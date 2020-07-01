@@ -1,4 +1,6 @@
 # my-test-repo
-首个用来测试git的仓库
-git操作修改在此
-云端修改记录在此
+# 日常记录用测试型仓库
+  [My blog](http://blog.csdn.net/archiewade)<br>
+    Here is my skill list:
+  * 111
+  * 222
