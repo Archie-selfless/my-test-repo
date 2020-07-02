@@ -1,188 +1,175 @@
 # my-test-repo
 # 日常记录用测试型仓库
   [My blog](http://blog.csdn.net/archiewade "点击跳转")<br><br>
-    Here is my skill list:
-  * 111
-  * 222
-# html
+# DOM Array Methods
+## html
 ```
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- 使用viewport进行移动端页面布局的控制。以下内容说明：[宽度适应设备] + [初始缩放比例1:1]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--  优先使用最新的IE版本  -->
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="stylesheet" href="validate.css">
-    <title>登录界面</title>
+    <meta http-equiv="x-ua-compatible" content="id=edge">
+    <link rel="stylesheet" href="dommethod.css">
+    <title>DOM Methods</title>
 </head>
 <body>
-    <div class="container">
-        <form id="form" class="form">
-            <h2>注册</h2>
-            <div class="form-control">
-                <label for="username">姓名:</label>
-                <input type="text" id="username" placeholder="请输入姓名">
-                <small>Error message</small>
-            </div>
-            <div class="form-control">
-                <label for="email">邮箱:</label>
-                <input type="text" id="email" placeholder="请输入邮箱">
-                <small>Error message</small>
-            </div>
-            <div class="form-control">
-                <label for="pwd">输入密码:</label>
-                <input type="password" id="pwd" placeholder="请输入密码">
-                <small>Error message</small>
-            </div>
-            <div class="form-control">
-                <label for="pwd2">确认密码:</label>
-                <input type="password" id="pwd2" placeholder="再次输入密码">
-                <small>Error message</small>
-            </div>
-            <button type="submit">提交</button>
-        </form>
-    </div>
-    <script src="validate.js"></script>
 
+<h1>Dom Array Methods</h1>
+<div class="container">
+    <aside>
+        <button id="add-user">添加用户</button>
+        <button id="double">金钱翻倍</button>
+        <button id="show-millionaires">只展示百万富翁</button>
+        <button id="sort">按财富排序</button>
+        <button id="calculate-wealth">计算全体财富值</button>
+    </aside>
+
+    <!--    通常main标签可以当做界标使用    -->
+    <main id="main">
+        <h2><strong>Person</strong>Wealth</h2>
+    </main>
+</div>
+
+<!--<script src="dommethod.js"></script>-->
+<script>
+    let number = 3.09887;
+    console.log(number.toFixed(2));
+</script>
 </body>
 </html>
 ```
 
-# css
+## css
 ``` (css)
-/* CSS提供的导入，此处将谷歌的字体资源库导入 */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-
-/* CSS声明全局量，需使用时可通过var()函数调用 */
-:root {
-    --success-color: #2ecc71;
-    --error-color: #e74c3c;
-    --background-color: #d1eeff
-}
-
-/*border-box 告诉浏览器去理解你设置的边框和内边距的值是包含在width内的。*/
-/*也就是说，如果你将一个元素的width设为100px,*/
-/*那么这100px会包含其它的border和padding，内容区的实际宽度会是width减去border + padding的计算值。*/
-/*大多数情况下这使得我们更容易的去设定一个元素的宽高*/
 * {
     box-sizing: border-box;
 }
 
-/* 这是 当文档处于 Quirks模式 时IE使用的盒模型*/
-
 body {
-    background-color: var(--background-color);
-    font-family: 'Open Sans', sans-serif;
+    background: #f4f4f4;
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-height: 100vh;
-    margin: 0;
 }
 
 .container {
-    background-color: #fff;
+    display: flex;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 800px;
+}
+
+aside {
+    padding: 10px 20px;
+    width: 250px;
+    border-right: 1px solid #111;
+}
+
+button {
+    cursor: pointer;
+    background-color: #ffffff;
+    border: solid 1px #111;
     border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+}
+
+#main {
+    flex: 1;
+    padding: 10px 20px;
 }
 
 h2 {
-    text-align: center;
-}
-
-.form {
-    padding: 30px 40px;
-}
-
-.form-control {
-    position: relative;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-}
-
-.form-control label {
-    color: #777;
-    display: block;
-}
-
-.form-control input {
-    border: 2px solid #f0f0f0;
-    border-radius: 4px;
-    display: block;
-    width: 100%;
-    font-size: 14px;
-}
-
-.form-control input:focus{
-    outline: 0;
-    border-color: #777;
-}
-
-.form-control small {
-    color: var(--error-color);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    visibility: hidden;
-}
-
-.form-control.success input {
-    border-color: var(--success-color);
-}
-
-.form-control.error input {
-    border-color: var(--error-color);
-}
-
-.form-control.error small {
-    visibility: visible;
-}
-
-.form button {
-    cursor: pointer;
-    background-color: #3498db;
-    border: 2px solid #3498db;
-    border-radius: 4px;
-    color: #fff;
-    display: block;
-    font-size: 16px;
-    padding: 10px;
-    margin-top: 20px;
-    width: 100%;
+    border-bottom: 1px solid #111;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    margin:  0 0 20px;
 }
 ```
 
-# js
+## js
 ```
-const form = document.getElementById('form');
-const username = document.getElementById('username');
-const email = document.getElementById('email');
-const pwd = document.getElementById('pwd');
-const pwd2 = document.getElementById('pwd2');
+const main = document.getElementById('main');
+const addUserBtn = document.getElementById('add-user');
+const doubleBtn = document.getElementById('double');
+const showMillionairesBtn = document.getElementById('show-millionaires');
+const sortBtn = document.getElementById('sort');
+const calculateWeathBtn = document.getElementById('calculate-wealth');
 
-// 展示错误信息 Error message
-function showError(input, message) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control error';
-    const small = formControl.querySelector('small');
-    small.innerText = message;
+let data = [];
+
+getRandomUser();
+getRandomUser();
+
+// 获取随机用户并添加金额
+async function getRandomUser() {
+    /* randomuser.me 会返回一个JSON化的对象，包含多种常用User数据 */
+    const res = await fetch('https://randomuser.me/api');
+    const data = await res.json();
+    const user = data.results[0];
+    const newUser = {
+        name: user.name.first + ' ' + user.name.last,
+        money: Math.floor(Math.random() * 10000000)
+    };
+    addData(newUser);
 }
-// 展示成功大纲
-function showSuccess(input) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control success';
+
+// 在数据组中添加新对象
+function addData(obj) {
+    data.push(obj);
+    updateDOM();
 }
 
-form.addEventListener('submit', function (e) {
-    e.preventDefault(); // 禁止掉浏览器的默认事件,只让浏览器执行我们规定的函数.
+// 所有人金额翻倍
+function doubleMoney() {
+    data = data.map(user => {
+        return {...user, money: user.money * 2};
+    });
+    updateDOM();
+}
 
+// 按富有级别降序
+function sortByRichest() {
+    data.sort((a, b) => b.money - a.money);
+    updateDOM();
+}
 
-}, { passive: false, capture: false });
-/*
-* capture: 表示函数是否捕获执行,
-* passive: 表示是否执行默认事件，true执行，false不执行
-* once: 是否是单次事件，如果是true，执行完事件就被销毁
-* */
+// 展示百万富翁
+function showMillionaires() {
+    data = data.filter(user => user.money > 1000000);
+    updateDOM();
+}
+
+// 计算财富总值
+function calculateWealth() {
+    const wealth = data.reduce((acc, user) => (acc += user.money), 0);
+    const wealthEL = document.createElement('div');
+    wealthEL.innerHTML = '<h3>Total: <strong>' + formatMoney(wealth) + '</strong>></h3>>';
+    main.appendChild(wealthEL);
+}
+
+// 更新DOM
+function updateDOM(providedData = data) {
+    // 清除main div
+    main.innerHTML = "<h2><strong>Person</strong>Wealth</h2>";
+
+    providedData.forEach(item => {
+        const element = document.createElement('div');
+        element.classList.add('person');
+        element.innerHTML = '<strong>' + item.name + '</strong>' + formatMoney();
+        main.appendChild(element);
+    });
+}
+
+// 将数组转化为金额
+function formatMoney(number) {
+    return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
 ```
+
