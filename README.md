@@ -1,7 +1,7 @@
 # my-test-repo
 # 日常记录用测试型仓库
   [My blog](http://blog.csdn.net/archiewade "点击跳转")<br><br>
-# DOM Array Methods
+# Model-menu-slider
 ## html
 ```
 <!DOCTYPE html>
@@ -10,166 +10,299 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="id=edge">
-    <link rel="stylesheet" href="dommethod.css">
-    <title>DOM Methods</title>
+    <!--  link或script中的 integrity 属性：为了防止 CDN 篡改 javascript 用的  -->
+    <!-- cloudflare是部署在国外的一个免费CDN服务平台 -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+            integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ="
+            crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="menu.css">
+    <title>登录界面</title>
 </head>
 <body>
+<!-- 导航栏 -->
+<nav id="navbar">
+    <div class="logo">
+        <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="user">
+    </div>
+    <ul>
+        <li><a href="#" name="Home">主页</a></li>
+        <li><a href="#" name="Portfolio">作品集</a></li>
+        <li><a href="#" name="Blog">博客</a></li>
+        <li><a href="#" name="Contaction">联系我</a></li>
+    </ul>
+</nav>
+<!-- 内容头部 -->
+<header>
+    <button id="toggle" class="toggle">
+        <i class="fa fa-bar fa-2x"></i>
+    </button>
+    <h1>登录界面</h1>
+    <p>学而不思则罔，思而不学则殆</p>
 
-<h1>Dom Array Methods</h1>
+    <button class="cta-btn" id="open">登录</button>
+</header>
+
 <div class="container">
-    <aside>
-        <button id="add-user">添加用户</button>
-        <button id="double">金钱翻倍</button>
-        <button id="show-millionaires">只展示百万富翁</button>
-        <button id="sort">按财富排序</button>
-        <button id="calculate-wealth">计算全体财富值</button>
-    </aside>
+    <h2>本页面简介</h2>
+    <p></p>
+    <p></p>
 
-    <!--    通常main标签可以当做界标使用    -->
-    <main id="main">
-        <h2><strong>Person</strong>Wealth</h2>
-    </main>
+    <h2>和我交流</h2>
+    <p></p>
+
+    <h2>Benefits</h2>
+    <ul>
+        <li>Lifetime Access</li>
+        <li>30 Day Money Back</li>
+        <li>Tailored Customer Support</li>
+    </ul>
+
+    <p></p>
 </div>
 
-<!--<script src="dommethod.js"></script>-->
-<script>
-    let number = 3.09887;
-    console.log(number.toFixed(2));
-</script>
+<!-- Model -->
+<div class="model-container" id="model">
+    <div class="model">
+        <button class="close-btn" id="close">
+            <i class="fa fa-times"></i>
+        </button>
+        <div class="model-header">
+            <h3>登入</h3>
+        </div>
+        <div class="model-content">
+            <p>通过注册可以获得更多帮助和信息
+            <form class="model-form">
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" class="form-input" placeholder="请输入...">
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-input" placeholder="请输入...">
+                </div>
+                <div>
+                    <label for="pwd">Password</label>
+                    <input type="password" id="pwd" class="form-input" placeholder="请输入...">
+                </div>
+                <div>
+                    <label for="pwd2">Password2</label>
+                    <input type="password" id="pwd2" class="form-input" placeholder="请输入...">
+                </div>
+                <input type="submit" value="Submit" class="submit-btn">
+            </form>
+            </p>
+        </div>
+    </div>
+</div>
+<script src="menu.js"></script>
 </body>
 </html>
 ```
 
 ## css
 ``` (css)
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+:root {
+    --model-duration: 1s;
+    --primary-color: #30336b;
+    --secondary-color: #be2edd;
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
-    background: #f4f4f4;
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    transition: transform 0.3s ease;
+}
+
+body.show-nav {
+    transform: translateX(200px);
+}
+
+nav {
+    background-color: var( --primary-color);
+    border-right: 2px solid rgba(200, 200, 200, 0.1);
+    color: #f0f0f0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    z-index: 100;
+    transform: translateX(-100%);
+}
+
+nav .logo {
+    padding: 30px 0;
+    text-align: center;
+}
+
+nav .logo img {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+}
+
+nav ul {
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+}
+
+nav ul li {
+    border-bottom: 2px solid rgba(200, 200, 200, 0.1);
+    padding: 20px;
+}
+
+nav ul li:first-of-type {
+    border-top: 2px solid rgba(200, 200, 200, 0.1);
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 130%;
+    position: relative;
+    padding: 40px 15px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header p {
+    margin: 30px 0;
+}
+
+button,
+input[type='submit'] {
+    background-color: var(--secondary-color);
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 12px;
+}
+
+button:focus {
+    outline: none;
+}
+
+.toggle {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.cta-btn {
+    padding: 12px 30px;
+    font-size: 20px;
 }
 
 .container {
-    display: flex;
-    padding: 20px;
+    padding: 15px;
     margin: 0 auto;
     max-width: 100%;
     width: 800px;
 }
 
-aside {
-    padding: 10px 20px;
-    width: 250px;
-    border-right: 1px solid #111;
+.model-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
-button {
-    cursor: pointer;
-    background-color: #ffffff;
-    border: solid 1px #111;
-    border-radius: 5px;
+.model-container.show-model {
     display: block;
+}
+
+.model {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    width: 400px;
+    animation-name: modelopen;
+    animation-duration: var(--model-duration);
+}
+
+.model-header {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 15px;
+}
+
+.model-header h3 {
+    margin: 0;
+    border-bottom: 1px solid #333;
+}
+
+.model-content {
+    padding: 20px;
+}
+
+.model-form div {
+    margin: 15px 0;
+}
+
+.model-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.model-form .form-input {
+    padding: 8px;
     width: 100%;
-    margin: 10px 0;
 }
 
-#main {
-    flex: 1;
-    padding: 10px 20px;
+.close-btn {
+    background: transparent;
+    font-size: 25px;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
-h2 {
-    border-bottom: 1px solid #111;
-    padding: 0 10px;
-    display: flex;
-    justify-content: space-between;
-    margin:  0 0 20px;
+@keyframes modelopen {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 ```
 
 ## js
 ```
-const main = document.getElementById('main');
-const addUserBtn = document.getElementById('add-user');
-const doubleBtn = document.getElementById('double');
-const showMillionairesBtn = document.getElementById('show-millionaires');
-const sortBtn = document.getElementById('sort');
-const calculateWeathBtn = document.getElementById('calculate-wealth');
 
-let data = [];
-
-getRandomUser();
-getRandomUser();
-
-// 获取随机用户并添加金额
-async function getRandomUser() {
-    /* randomuser.me 会返回一个JSON化的对象，包含多种常用User数据 */
-    const res = await fetch('https://randomuser.me/api');
-    const data = await res.json();
-    const user = data.results[0];
-    const newUser = {
-        name: user.name.first + ' ' + user.name.last,
-        money: Math.floor(Math.random() * 10000000)
-    };
-    addData(newUser);
-}
-
-// 在数据组中添加新对象
-function addData(obj) {
-    data.push(obj);
-    updateDOM();
-}
-
-// 所有人金额翻倍
-function doubleMoney() {
-    data = data.map(user => {
-        return {...user, money: user.money * 2};
-    });
-    updateDOM();
-}
-
-// 按富有级别降序
-function sortByRichest() {
-    data.sort((a, b) => b.money - a.money);
-    updateDOM();
-}
-
-// 展示百万富翁
-function showMillionaires() {
-    data = data.filter(user => user.money > 1000000);
-    updateDOM();
-}
-
-// 计算财富总值
-function calculateWealth() {
-    const wealth = data.reduce((acc, user) => (acc += user.money), 0);
-    const wealthEL = document.createElement('div');
-    wealthEL.innerHTML = '<h3>Total: <strong>' + formatMoney(wealth) + '</strong>></h3>>';
-    main.appendChild(wealthEL);
-}
-
-// 更新DOM
-function updateDOM(providedData = data) {
-    // 清除main div
-    main.innerHTML = "<h2><strong>Person</strong>Wealth</h2>";
-
-    providedData.forEach(item => {
-        const element = document.createElement('div');
-        element.classList.add('person');
-        element.innerHTML = '<strong>' + item.name + '</strong>' + formatMoney();
-        main.appendChild(element);
-    });
-}
-
-// 将数组转化为金额
-function formatMoney(number) {
-    return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-}
 ```
 
