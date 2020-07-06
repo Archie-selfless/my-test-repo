@@ -12,12 +12,12 @@
     <meta http-equiv="x-ua-compatible" content="id=edge">
     <!--  link或script中的 integrity 属性：为了防止 CDN 篡改 javascript 用的  -->
     <!-- cloudflare是部署在国外的一个免费CDN服务平台 -->
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
-            integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ="
-            crossorigin="anonymous"
-    />
+<!--    <link-->
+<!--            rel="stylesheet"-->
+<!--            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"-->
+<!--            integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ="-->
+<!--            crossorigin="anonymous"-->
+<!--    />-->
     <link rel="stylesheet" href="menu.css">
     <title>登录界面</title>
 </head>
@@ -25,7 +25,8 @@
 <!-- 导航栏 -->
 <nav id="navbar">
     <div class="logo">
-        <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="user">
+<!--        <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="user">-->
+        <img src="huawei_logo.png" alt="user">
     </div>
     <ul>
         <li><a href="#" name="Home">主页</a></li>
@@ -47,11 +48,42 @@
 
 <div class="container">
     <h2>本页面简介</h2>
-    <p></p>
-    <p></p>
+    <p>
+        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        aaaaaaaaaaaaaaaaaa
+        aaaaaaaaaaaaaaa
+        aaaaaaaaaaaaaaaaaaaaaaaa
+        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.
+    </p>
+    <p>
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.
+    </p>
 
     <h2>和我交流</h2>
-    <p></p>
+    <p>ccccccccccccccccccccccccccccccc
+    ccccccccccccccccccccccccccccccccccccc
+    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+    </p>
 
     <h2>Benefits</h2>
     <ul>
@@ -303,6 +335,39 @@ button:focus {
 
 ## js
 ```
+const toggle = document.getElementById('toggle');
+const close = document.getElementById('close');
+const open = document.getElementById('open');
+const model = document.getElementById('model');
+const navbar = document.getElementById('navbar');
 
+function closeNavbar(e) {
+    if (document.body.classList.contains('show-nav') &&
+        e.target !== toggle && !toggle.contains(e.target) &&
+        e.target !== navbar && !navbar.contains(e.target)) {
+        document.body.classList.toggle('show-nav');
+        document.body.removeEventListener('click', closeNavbar);
+    } else if (!document.body.classList.contains('show-nav')) {
+        document.body.removeEventListener('click', closeNavbar);
+    }
+}
+
+// 切换导航栏
+toggle.addEventListener('click', () => {
+    document.body.classList.toggle('show-nav');
+    document.body.addEventListener('click', closeNavbar);
+});
+
+// 展示登录模型块
+open.addEventListener('click', () => model.classList.add('show-model'));
+
+// 隐藏登录模型块
+close.addEventListener('click', () => model.classList.remove('show-model'));
+
+// 通过块外点击实现隐藏登录模型块
+window.addEventListener('click', e =>
+    e.target == model ? model.classList.remove('show-model') : false
+)
+;
 ```
 
