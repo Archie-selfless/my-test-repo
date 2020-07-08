@@ -880,3 +880,97 @@ result.addEventListener('click', e => {
 });
 
 ```
+# 个人主页
+## HTML
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>test</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+<nav id="navbar">
+    <ul>
+        <li><a href="#" name="Home">主页</a></li>
+        <li><a href="#" name="Portfolio">作品集</a></li>
+        <li><a href="#" name="Blog">博客</a></li>
+        <li><a href="#" name="Contaction">联系我</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h1>Archie's Home</h1>
+    <p>码海无发免洗头，这个需求有点牛</p>
+</header>
+
+</body>
+</html>
+```
+
+## CSS
+```
+* {
+    box-sizing: border-box;
+}
+
+nav {
+    background-color: #2a6495;
+    border-right: 2px solid #c0392b;
+    border-top-right-radius: 20px 40px;
+    border-bottom-right-radius: 20px 40px;
+    color: #FFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 40%;
+    z-index: 100;
+    transform: translateX(-80%);
+    transition: transform 250ms ease-out;
+}
+
+nav:hover {
+    transform: translateX(0px);
+}
+
+nav ul {
+    padding:0;
+    list-style: none;
+    margin: 0;
+}
+
+nav ul li {
+    border-bottom: 2px solid rgba(200, 200, 200, 0.1);
+    padding: 20px;
+}
+
+nav ul li:first-of-type {
+    border-top: 2px solid rgba(200, 200, 200, 0.1);
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: yellowgreen;
+}
+
+header {
+    position: relative;
+    text-align: center;
+}
+
+header h1 {
+    margin: 40px 0 15px 0;
+}
+
+header p {
+    margin: 0;
+}
+```
