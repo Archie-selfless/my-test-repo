@@ -895,7 +895,7 @@ result.addEventListener('click', e => {
 <body>
 <nav id="navbar">
     <ul>
-        <li><a href="#" name="Home">主页</a></li>
+        <li><a href="./test.html" name="Home">主页</a></li>
         <li><a href="#" name="Portfolio">作品集</a></li>
         <li><a href="#" name="Blog">博客</a></li>
         <li><a href="#" name="Contaction">联系我</a></li>
@@ -903,9 +903,26 @@ result.addEventListener('click', e => {
 </nav>
 
 <header>
-    <h1>Archie's Home</h1>
-    <p>码海无发免洗头，这个需求有点牛</p>
+    <div class="function-area">
+        <button id="back-home" class="back-home">Back Home</button>
+        <span><a href="#">My GitHub</a></span>
+    </div>
+    <h1>Archie's Technical Blog</h1>
+    <p><strong>Tec attack</strong> save the world</p>
+
 </header>
+
+<div class="container">
+    <div class="infomation">
+        aaa...
+    </div>
+</div>
+
+<div class="footer" style="text-align: center">博主信息
+    <span>电话</span>
+    <span>居住地</span>
+    <span>邮箱</span>
+</div>
 
 </body>
 </html>
@@ -913,20 +930,29 @@ result.addEventListener('click', e => {
 
 ## CSS
 ```
+body {
+    position: absolute;
+    height: 100%;
+    left: 10px;
+    right: 10px;
+}
+
 * {
-    box-sizing: border-box;
+box-sizing: border-box;
+margin: 0;
+padding: 0;
 }
 
 nav {
     background-color: #2a6495;
     border-right: 2px solid #c0392b;
-    border-top-right-radius: 20px 40px;
-    border-bottom-right-radius: 20px 40px;
+    border-top-right-radius: 40px 40px;
+    border-bottom-right-radius: 40px 40px;
     color: #FFF;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100px;
+    width: 60px;
     height: 40%;
     z-index: 100;
     transform: translateX(-80%);
@@ -964,6 +990,7 @@ nav ul li a:hover {
 header {
     position: relative;
     text-align: center;
+    margin: 15px 0;
 }
 
 header h1 {
@@ -972,5 +999,45 @@ header h1 {
 
 header p {
     margin: 0;
+    color: red;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    background: #BBB;
+}
+
+.infomation {
+    height: 100%;
+}
+
+.function-area {
+    text-align: right;
+    height: 50px;
+}
+
+.function-area span {
+    display: block;
+    margin-top: 10px;
+}
+
+.function-area span a {
+    text-decoration: none;
+    font-size: 14px;
+    color: black;
+}
+
+
+.footer {
+    background: #55b7a4;
+    color: #212121;
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 ```
