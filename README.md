@@ -672,3 +672,111 @@ header p {
     width: 100%;
 }
 ```
+
+# Test
+## HTML
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>test</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+<!--1.浮动的方式来实现布局-->
+<section class="layout float">
+    <style>
+        .layout.float .left {
+            float: left;
+            width: 100px;
+            background-color: #4d4d4d;
+        }
+
+        .layout.float .main {
+            background-color: #2a6495;
+        }
+    </style>
+    <article class="left-main">
+        <div class="left"></div>
+        <div class="main">
+            <h1>浮动双栏布局</h1>
+            <p>双栏布局中间部分</p>
+            <p>双栏布局中间部分</p>
+        </div>
+    </article>
+</section>
+
+<!--2.定位的方式来实现布局-->
+<section class="layout absolute">
+    <style>
+        .layout.absolute .left-main {
+            width: 100%;
+        }
+
+        .layout.absolute .left {
+            position: absolute;
+            left: 0;
+            width: 200px;
+            background-color: #4d4d4d;
+        }
+
+        .layout.absolute .main {
+            margin-left: 200px;
+            background-color: #2a6495;
+            right: 0;
+        }
+    </style>
+    <article class="left-main">
+        <div class="left"></div>
+        <div class="main">
+            <h1>绝对定位双栏布局</h1>
+            <p>双栏布局中间部分</p>
+            <p>双栏布局中间部分</p>
+        </div>
+    </article>
+</section>
+
+<!--3.flex布局的实现-->
+<section class="layout flex">
+    <style>
+        .layout.flex .left-main{
+            display: flex;
+        }
+        .layout.flex .left{
+            background-color: #4d4d4d;
+            width: 300px;
+        }
+        .layout.flex .main{
+            background-color: #2a6495;
+            flex: 1;
+        }
+    </style>
+    <article class="left-main">
+        <div class="left"></div>
+        <div class="main">
+            <h1>flex双栏布局</h1>
+            <p>双栏布局中间部分</p>
+            <p>双栏布局中间部分</p>
+        </div>
+    </article>
+</section>
+
+</body>
+</html>
+```
+## CSS
+```
+* {
+    margin: 0;
+    padding: 0;
+}
+.layout {
+    margin-top: 10px;
+}
+.layout div {
+    min-height: 100px;
+}
+```
