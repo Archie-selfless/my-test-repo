@@ -396,7 +396,116 @@
 </html>
 ```
 
+# 解决inline-box间隙问题
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo005</title>
+    <style>
+        span{
+            background-color: #2a6495;
+        }
+        .method2 span {
+            font-size: 17px;
+        }
+    </style>
+</head>
+<body>
+<H4>inline-box的间隙</H4>
+<div class="origin">
+    <span>111</span>
+    <span>222</span>
+    <span>333</span>
+    <span>444</span>
+</div>
+<h4>解决方式1：删除换行符（IE像素残留）</h4>
+<div class="method1">
+    <span>111</span><span>222</span><span>333</span><span>444</span>
+</div>
+<h4>解决方式2：父元素 设置font-size：0 ；letter-spacing：-3px (Chrom浏览器不需要)，子元素重新设置font-size</h4>
+<div class="method2" style="font-size: 0;">
+    <span>111</span>
+    <span>222</span>
+    <span>333</span>
+    <span>444</span>
+</div>
+</body>
+</html>
+```
 
+# 基于视口垂直居中
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基于视口垂直居中</title>
+    <style>
+        .wrapper {
+            background-color: #2a6495;
+            width: 1000px;
+            height: 800px;
+            overflow: hidden;
+        }
+        .center {
+            width: 18em;
+            height: 10em;
+            text-align: center;
+            background-color: #2a5b52;
+            color: #FFF;
+            /* 1vh = 1% * 视口高度 */
+            margin: 50vh auto;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="center">
+        基于视口 <br>
+        不要求原生有固定高度 <br>
+        只基于窗口，不基于父元素 <br>
+    </div>
+</div>
+</body>
+</html>
+```
+# 定宽居中
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定宽居中</title>
+    <style>
+        .center {
+            width: 18em;
+            height: 10em;
+            background-color: #2a5b52;
+            text-align: center;
+            color: #FFF;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -9em;
+            margin-top: -5em;
+        }
+    </style>
+</head>
+<body>
+<div class="center">
+    要求原生有固定的宽高。<br/>
+    position: absolute;<br/>
+    top和left 为 50%;<br/>
+    margin上为高的一半<br/>
+    margin左为宽的一半<br/>
+</div>
+</body>
+</html>
+```
 
 
 # 个人主页
