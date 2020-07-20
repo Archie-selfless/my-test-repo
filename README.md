@@ -252,6 +252,152 @@
 </html>
 ```
 
+# 四类定位
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=egde">
+    <title>Demo003</title>
+    <style type="text/css">
+        p {
+            font-size: 11pt;
+            color: #363636;
+            text-indent: 2em;
+        }
+
+        .parent {
+            width: 500px;
+            height: 150px;
+            margin-top: 20px;
+            margin-left: 20px;
+            border: solid 1px #555555;
+            background: #aaaaaa;
+        }
+
+        .parent div {
+            width: 100px;
+            height: 80px;
+            float: left;
+            background: #708090;
+            border: dashed 1px #008B8B;
+            font-size: 12pt;
+            font-weight: bold;
+            color: #104E8B;
+        }
+    </style>
+</head>
+<body>
+<!--相对定位!-->
+<h2>relative</h2>
+<p>相对定位是一个非常容易掌握的概念。如果对一个元素进行相对定位，它将出现在它所在的位置上。然后，可以通过设置垂直或水平位置，让这个元素“相对于”它的起点进行移动。</p>
+<div class="parent">
+    <div>child 1</div>
+    <div style="position:relative;left:20px;top:20px;">child 2</div>
+    <div>child 3</div>
+</div>
+
+<!--绝对定位!-->
+<h2>absolute</h2>
+<p>绝对定位的元素的位置相对于最近的已定位祖先元素，如果元素没有已定位的祖先元素，那么它的位置相对于最初的包含块。
+    对于定位的主要问题是要记住每种定位的意义。</p>
+<p>绝对定位是“相对于”最近的已定位祖先元素，如果不存在已定位的祖先元素，那么“相对于”最初的包含块。所以如果要设定元素与其父元素的绝对位置定位就必须设定父元素的定位。</p>
+<p>注释：根据用户代理的不同，最初的包含块可能是画布或 HTML 元素。</p>
+<div class="parent" style="position:relative;"<!--如果该处不定位，那么child5框的定位是相对于最初的包含块!-->>
+<div>child 4</div>
+<div style="position:absolute;left:20px;top:20px;">child 5</div>
+<div>child 6</div>
+</div>
+
+<!--相对定位!-->
+<h2>fixed</h2>
+<p>元素框的表现类似于将 position 设置为 absolute，不过其包含块是视窗本身。</p>
+<div class="parent">
+    <div>child 7</div>
+    <div style="position:fixed;right:20px;top:20px;">child 8</div>
+    <div>child 9</div>
+</div>
+
+<!--相对定位!-->
+<h2>static</h2>
+<p>元素框正常生成。块级元素生成一个矩形框，作为文档流的一部分，行内元素则会创建一个或多个行框，置于其父元素中。</p>
+<div class="parent">
+    <div>child 10</div>
+    <div style="position:static;right:20px;top:20px;">child 11</div>
+    <div>child 12</div>
+</div>
+</body>
+```
+
+# 经典层叠
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo004</title>
+    <style>
+        body {
+            padding: 100px;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            float: left;
+        }
+        .first {
+            background-color: #2a5b52;
+            position: relative;
+            z-index: -2;
+        }
+        .second {
+            background-color: #2a6495;
+            position: absolute;
+            left: 120px;
+            top: 150px;
+            z-index: -1;
+        }
+        .third {
+            float: none;
+            background-color: #1ABC9C;
+            margin-left: 40px;
+            margin-top: 90px;
+        }
+        .fourth {
+            background-color: #4d4d4d;
+            margin-left: 70px;
+            margin-top: -150px;
+        }
+        .fifth {
+            background-color: #2e0d0e;
+            display: inline-block;
+            margin-left: -170px;
+            margin-top: -110px;
+        }
+        .sixth {
+            background-color: #010101;
+            margin-left: -150px;
+            margin-top: -70px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="first"></div>
+<div class="second"></div>
+<div class="third"></div>
+<div class="fourth"></div>
+<div class="fifth"></div>
+<div class="sixth"></div>
+<p style="position: fixed; bottom: 10px;">负z-index(-2) < 负z-index(-1) < 常规流块级元素&非position后代 < 浮动盒&非position后代 < inline盒子&非position后代 < z-index升序</p>
+</body>
+</html>
+```
+
+
+
 
 # 个人主页
 ## HTML
