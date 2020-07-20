@@ -163,7 +163,50 @@
 </body>
 </html>
 ```
-
+# 圣杯布局
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <style>
+        .right, .left, .main {
+            min-height: 100px;
+            float: left;
+            position: relative;
+        }
+        .left{
+            width: 200px;
+            background-color: #2a6495;
+            margin-left: -100%; /* 使左侧区块移至中心块之前 */
+            left: -200px; /* 顶去容器的左内间距 */
+        }
+        .right {
+            width: 300px;
+            background-color: #2a5b52;
+            margin-left: -300px; /* 使右侧区块移至中心块之后 */
+            right: -300px; /* 顶去容器的右内间距 */
+        }
+        .main {
+            background-color: #000;
+            width: 100%;
+        }
+        .container {
+            padding-left: 200px;
+            padding-right: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>
+```
 
 # 个人主页
 ## HTML
