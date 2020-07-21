@@ -230,6 +230,8 @@
 </html>
 ```
 
+****
+
 # 基于视口垂直居中
 ```
 <!DOCTYPE html>
@@ -267,7 +269,7 @@
 </body>
 </html>
 ```
-# 定宽居中
+# 定宽垂直居中
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -302,6 +304,603 @@
 </html>
 ```
 
+# calc垂直居中
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定宽居中</title>
+    <style>
+        .center {
+            width: 18em;
+            height: 10em;
+            background-color: #2a5b52;
+            text-align: center;
+            color: #FFF;
+
+            position: absolute;
+            top: calc(50% - 5em);
+            left: calc(50% - 9em);
+        }
+    </style>
+</head>
+<body>
+<div class="center">
+    要求原生有固定的宽高。<br/>
+    position: absolute;<br/>
+    top 为 calc(50% 剪 一半高)
+    left 为 calc(50% 剪 一半宽)
+</div>
+</body>
+</html>
+```
+
+# transform垂直居中
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定宽居中</title>
+    <style>
+        .center {
+            width: 18em;
+            height: 10em;
+            background-color: #2a5b52;
+            text-align: center;
+            color: #FFF;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform : translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+<div class="center">
+    要求原生有固定的宽高。<br/>
+    position: absolute;<br/>
+    top和left 为 50%;<br/>
+    transform: translate(-50%, -50%);
+</div>
+</body>
+</html>
+```
+
+# flex垂直居中方法1
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>flex居中1</title>
+    <style>
+        .wrapper {
+            width: 1000px;
+            height: 600px;
+            background-color: #2a6495;
+            display: flex;
+        }
+        .center {
+            width: 18em;
+            height: 10em;
+            background-color: #2a5b52;
+            text-align: center;
+            color: #FFF;
+
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="center">
+        使用flex居中 <br>
+        父元素 display : flex <br>
+        居中块 margin ： auto
+    </div>
+</div>
+</body>
+</html>
+```
+
+
+# flex垂直居中方法2
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>flex居中1</title>
+    <style>
+        .wrapper {
+            width: 1000px;
+            height: 600px;
+            background-color: #2a6495;
+
+            display: flex;
+            /* 盒子横轴的对齐方式 */
+            justify-content: center;
+            /* 盒子纵轴的对齐方式 */
+            align-items: center;
+        }
+        .center {
+            width: 18em;
+            height: 10em;
+            background-color: #2a5b52;
+            text-align: center;
+            color: #FFF;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="center">
+        使用flex居中<br/>
+        父元素 display: flex; <br/>
+        justify-content: center;<br/>
+        align-items: center;<br/>
+    </div>
+</div>
+</body>
+</html>
+```
+
+# text-align的center属性水平居中
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>flex居中1</title>
+    <style>
+        .wrapper {
+            width: 1000px;
+            height: 600px;
+            background-color: #2a6495;
+            text-align: center;
+        }
+        .center {
+            display: inline-block;
+            width: 18em;
+            height: 10em;
+            background-color: #2a5b52;
+            color: #FFF;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="center">
+        如果需要居中的元素为常规流中 inline / inline-block 元素，为父元素设置 text-align: center;
+    </div>
+</div>
+</body>
+</html>
+```
+
+# margin的auto属性 水平居中
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>水平居中</title>
+    <style>
+        .wrapper {
+            width: 1000px;
+            height: 600px;
+            background-color: #2a6495;
+            text-align: center;
+        }
+        .center {
+            width: 18em;
+            height: 10em;
+            background-color: #2a5b52;
+            color: #FFF;
+
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="center">
+        如果需要居中的元素为常规流中 inline / inline-block 元素，为父元素设置 text-align: center;
+    </div>
+</div>
+</body>
+</html>
+```
+
+# 绝对定位水平居中
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>水平居中</title>
+    <style>
+        .wrapper {
+            width: 1000px;
+            height: 600px;
+            background-color: #2a6495;
+            position: relative;
+        }
+        .center {
+            width: 18em;
+            height: 10em;
+            background-color: #2a5b52;
+            color: #FFF;
+            position: absolute;
+            left: 50%;
+            margin-left: -9em;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="center">
+        如果元素positon: absolute; 那么 <br>
+        0）设置父元素postion: relative <br>
+        1）为元素设置宽度，<br>
+        2）偏移量设置为 50%，<br>
+        3）偏移方向外边距设置为元素宽度一半乘以-1
+    </div>
+</div>
+</body>
+</html>
+```
+
+# 相对定位水平居中
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>水平居中</title>
+    <style>
+        .wrapper {
+            width: 1000px;
+            height: 600px;
+            background-color: #2a6495;
+        }
+        .center {
+            width: 18em;
+            height: 10em;
+            background-color: #2a5b52;
+            color: #FFF;
+            position: relative;
+            left: 50%;
+            margin-left: -9em;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="center">
+        如果元素positon: relative; 那么 <br>
+        0）为元素设置宽度 <br>
+        1）偏移量设置为 50%，<br>
+        2）偏移方向外边距设置为元素宽度一半乘以-1，<br>
+    </div>
+</div>
+</body>
+</html>
+```
+
+****
+
+# 使用div绘制图形（三角形）——进阶可以学习clip-path的用法画各种图形！
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>绘制图形</title>
+    <style>
+        .triangles {
+            width: 0;
+            height: 0;
+            border-left: 100px solid red;
+            border-top: 100px solid blue;
+            border-bottom: 100px solid green;
+            border-right: 100px solid yellow;
+        }
+    </style>
+</head>
+<body>
+<div class="triangles"></div>
+</body>
+</html>
+```
+
+# 实现0.5px的边框
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>绘制图形</title>
+    <style>
+        .custom-border{
+            width:200px;
+            margin:10px auto;
+            height:100px;
+            border:1px solid #333;
+            background-color:#eee;
+            padding:10px;
+        }
+        .scale-border{
+            margin:10px auto;
+            height:100px;
+            position:relative;
+            padding:10px;
+            width: 200px;
+        }
+        .content{
+            position:relative;
+            z-index:2;
+        }
+        .border{
+            transform:scale(0.5); /* 通过整体缩放使得边界变为0.5px */
+            position:absolute;
+            border:1px solid #333;
+            top:-50%;
+            right:-50%;
+            bottom:-50%;
+            left:-50%;
+            background-color:#eee;
+        }
+    </style>
+</head>
+<body>
+<div class="custom-border border-color">边框宽度1px</div>
+<div class="scale-border">
+    <div class="content">边框宽度0.5px</div>
+    <div class="border border-color"></div>
+</div>
+</body>
+</html>
+```
+
+# 实现3D效果（旋转的硬币）
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>3D效果</title>
+    <style>
+        .box {
+            position: relative;
+            height: 200px;
+            width: 200px;
+            margin: 200px auto;
+            transition: all 1s;
+            transform-style: preserve-3d; /* 保留子元素的3d空间，这个是给父盒子添加的！ */
+            transform: perspective(500px); /* 透视，用在要动的元素上 */
+        }
+        /* 用定位将两个盒子叠加在一起 */
+        .coin-front, .coin-back {
+            position: absolute;
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            line-height: 200px;
+        }
+        .coin-front {
+            background-color: #1F2438;
+            z-index: 1; /* 提高硬币正面的z轴 */
+        }
+        .coin-back {
+            background-color: #000;
+            transform: rotateY(180deg); /*沿y轴3d旋转180度，旋转以后，两个盒子就实现背靠背了，这样文字就不会镜像*/
+        }
+        .box:hover {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="coin-front">水可载舟</div>
+    <div class="coin-back">亦可覆舟</div>
+</div>
+</body>
+</html>
+```
+
+# 响应式布局(JS模拟)
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>test</title>
+    <style>
+        .container {
+            margin:auto;
+            height: 40px;
+            background-color: #2a5b52;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <p id="dynamic-width" style="color: white"></p>
+</div>
+
+<script>
+    window.addEventListener("load", function () {
+        // 1. 获取容器
+        let container = document.querySelector(".container");
+        let dynamic_width = document.getElementById("dynamic-width");
+        let clientw = 0;
+        resize();
+        // 2. 监听窗口的大小变化
+        window.addEventListener("resize", resize);
+        function resize() {
+            // 2.1 获取改变后的宽度
+            clientw = window.innerWidth;
+            // 2.2 根据宽度转变容器大小
+            if (clientw >= 1200) { // 超大屏幕
+                container.style.width = "1170px";
+            }else if (clientw >= 992) { // 大屏幕
+                container.style.width = "970px";
+            }else if (clientw >= 768) { // 小屏幕
+                container.style.width = "750px";
+            }else { // 超小屏幕
+                container.style.width = "100%";
+            }
+            dynamic_width.innerText = 'width:' + container.style.width;
+        }
+    })
+</script>
+
+</body>
+</html>
+```
+
+# 响应式布局（CSS实现）
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>test</title>
+    <style>
+        .container {
+            margin: auto;
+            height: 40px;
+            background-color: #2a5b52;
+        }
+
+        /* 媒体查询 */
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 100%;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 992px) {
+            .container {
+                width: 750px;
+            }
+        }
+
+        @media screen and (min-width: 992px) and (max-width: 1200px) {
+            .container {
+                width: 970px;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .container {
+                width: 1170px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <p id="dynamic-width" style="color: white"></p>
+</div>
+</body>
+</html>
+```
+
+## PostCSS的实现原理
+### PostCSS是一个通过JS插件转换样式表的工具，它本身并不是一门新的CSS语言，而是一个平台或者是生态心态，提供插件扩展服务即JS API，开发者可以根据这些接口，定制开发插件， 目前比较流行的插件工具如：Autoprefixer 、Stylelint 、CSSnano
+
+***
+## typeof可以及检测的数据类型有哪些
+* 基本数据类型：Undefined null bool string number
+* 关键点：typeof只能区分值类型，不能区分引用类型
+* JS中的基本数据类型：null, undefined, bool, string, number（typeof可以区分除了null以外的四种值类型）
+* typeof 6种类型：Object({},[],null), Undefined, Boolean, Number, Function, String
+* typeof可以区分值类型，typeof null = Object
+
+## JS中===和==的区别
+### 区别：
+== 会进行强制类型转换之后再比较，=== 不会进行强制类型转换的
+### 应用场景：
+1. （用于判断对象属性是否存在）：if (obj == null) ===>>> 等价于if (obj == null || obj == undefined),可以简化代码，其他情形都使用===进行比较
+2. 用于判断函数的参数是否存在： function(a, b){ if(a == null) { // ... }}
+3. 对于函数内部或者是一个对象的参数进行判断只会出现undefined， 而不会报错（慎用）
+### js中类型转换为false的有哪些(6种)
+null, undefined, NaN, '', false, 0
+
+## JS中的内置函数有哪些
+* 内置函数： Object Array Boolean Number String Function Date RegExp Error
+* 内置对象：Math, JSON
+
+## 原型和原型链
+### 原型链的5条规则
+1. 所有的引用类型（数组，对象，函数），都是具有对象特性的，即可以自由扩展属性（除了null以外）
+2. 所有的引用类型（数组、对象、函数），都有一个proto 属性（隐式原型），这个属性的值是一个普通对象
+3. 所有的函数，都有一个prototype属性（显式原型），这个属性值是一个普通的对象
+4. 有的引用类型（数组、对象、函数），proto的属性值指向（完全相等）它的构造函数的“prototype”的属性值
+5. 试图得到一个对象的某一个属性的时候，如果一个对象本身没有这个属性的话，就会去它的proto( 也就是它的构造函数中去寻找这个属性)
+
+### instanceof的作用
+判断【引用类型】属于哪个【构造函数】的方法
+
+### 写一个原型继承的例子
+### 描述一下new一个对象的过程
+
+## 作用域和闭包
+### 函数表达式和函数声明的区别
+1. 函数声明中函数名是必须的，函数表达式中则是可选的。
+2. 用函数声明定义的函数，函数可以在函数声明之前调用，而用函数表达式定义的函数则只能在声明之后调用。
+
+### 对执行上下文（ECStack）的理解
+#### 执行上下文可以理解为当前代码的执行环境，它会形成一个作用域。JavaScript中的运行环境大概包括三种情况
+1. 全局环境：JavaScript代码运行起来会首先进入的环境
+2. 函数环境：当函数被调用执行时，会进入被调用的函数中执行代码
+3. eval（不推荐使用会对JS的执行效率产生影响）
+（JavaScript引擎会以栈的方式来处理它们，这个栈，我们称其为函数调用栈(call stack)。栈底永远都是全局上下文，而栈顶就是当前正在执行的上下文。）
+
+### 对this的理解
+1. 作为构造函数执行
+2. 作为对象属性执行
+3. 作为普通函数执行
+4. call apply bind
+
+### 严格模式下的this
+### 箭头函数中的this
+### call,apply,bind的区别
+### JS中作用域的理解
+
+
+
+***
 
 # 个人主页
 ## HTML
