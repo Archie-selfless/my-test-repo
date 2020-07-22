@@ -1,8 +1,9 @@
 # my-test-repo
 # 日常记录用测试型仓库
   [My blog](http://blog.csdn.net/archiewade "点击跳转")<br><br>
-  
-# 双飞翼
+
+# CSS布局
+## 双飞翼
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +48,7 @@
 </html>
 ```
 
-# 四类定位
+## 四类定位
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -126,7 +127,7 @@
 </body>
 ```
 
-# 经典层叠
+## 经典层叠
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -191,7 +192,7 @@
 </html>
 ```
 
-# 解决inline-box间隙问题
+## 解决inline-box间隙问题
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -232,7 +233,7 @@
 
 ****
 
-# 基于视口垂直居中
+## 基于视口垂直居中
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -269,7 +270,7 @@
 </body>
 </html>
 ```
-# 定宽垂直居中
+## 定宽垂直居中
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -336,7 +337,7 @@
 </html>
 ```
 
-# transform垂直居中
+## transform垂直居中
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -369,7 +370,7 @@
 </html>
 ```
 
-# flex垂直居中方法1
+## flex垂直居中方法1
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -409,7 +410,7 @@
 ```
 
 
-# flex垂直居中方法2
+## flex垂直居中方法2
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -452,7 +453,7 @@
 </html>
 ```
 
-# text-align的center属性水平居中
+## text-align的center属性水平居中
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -487,7 +488,7 @@
 </html>
 ```
 
-# margin的auto属性 水平居中
+## margin的auto属性 水平居中
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -523,7 +524,7 @@
 </html>
 ```
 
-# 绝对定位水平居中
+## 绝对定位水平居中
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -564,7 +565,7 @@
 </html>
 ```
 
-# 相对定位水平居中
+## 相对定位水平居中
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -604,8 +605,8 @@
 ```
 
 ****
-
-# 使用div绘制图形（三角形）——进阶可以学习clip-path的用法画各种图形！
+# CSS效果
+## 使用div绘制图形（三角形）——进阶可以学习clip-path的用法画各种图形！
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -840,6 +841,7 @@
 ### PostCSS是一个通过JS插件转换样式表的工具，它本身并不是一门新的CSS语言，而是一个平台或者是生态心态，提供插件扩展服务即JS API，开发者可以根据这些接口，定制开发插件， 目前比较流行的插件工具如：Autoprefixer 、Stylelint 、CSSnano
 
 ***
+# JS基础
 ## typeof可以及检测的数据类型有哪些
 * 基本数据类型：Undefined null bool string number
 * 关键点：typeof只能区分值类型，不能区分引用类型
@@ -897,10 +899,322 @@ null, undefined, NaN, '', false, 0
 ### 箭头函数中的this
 ### call,apply,bind的区别
 ### JS中作用域的理解
+### 什么是自由变量和作用域链
+### 闭包的使用场景
+1. 函数作为返回值
+  1. 一个函数的返回值是一个函数，父级作用域是指，定义时候的作用域，而不是执行的作用域
+2. 函数作为参数传递
+  2. 【重点】：函数作用域中的自由变量会在声明的父级作用域中去寻找，而不是去执行的时候的作用域中去寻找变量
+### 创建10个a标签，点击的时候，弹出对应的序号
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>test</title>
+</head>
+<body>
+</body>
 
+<script>
+    createHrefElements();
 
+    // 使用立即函数+闭包实现的
+    function createHrefElementsTwo() {
+        for (var i = 0; i < 10; i++) {
+            // 一个函数就是一个作用域，这里相当于是创建了10个函数作用域，每一个作用域里面都是有自己的一歌变量i的，这是当用户需要这个自由变量的时候，
+            // 就会直接去这个这个函数作用域范围内寻找这个变量，每一个里面就是一个单独的函数作用域
+            (function (i) {
+                // 这里面的就是单独的一个函数作用域
+                var a = document.createElement('a');
+                a.innerText = '我是立即函数中的' + i;
+                a.href = '#';
+                a.addEventListener('click', function (e) {
+                    e.preventDefault(); // 禁止掉浏览器的默认事件,只让浏览器执行我们规定的函数.
+                    // 分析：由这个for循环可以发现，这个i实际上是一个函数作用域的变量，这个i一直是变化的，当i等于9的时候，创建完毕最后一个元素，
+                    // 最后执行完毕i++, i的最终结果就是10，因此对于每一个a标签点击都是一个10
+                    alert(i);                   // 这里的i最后可以实现点击就弹出对应的编号吗？
+                });
+                document.body.appendChild(a);
+                document.body.appendChild(document.createElement('br'));
+            })(i);      //  这里的i和这个里面的状态信息保持一致的
+        }
+    }
+</script>
+
+</html>
+```
+### 函数curry化
+#### 定义
+柯里化函数(curried function)每次返回一个一元函数: 每次携带一个参数的函数
+#### 实现
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>test</title>
+</head>
+<body>
+</body>
+<script>
+    console.log(add(1,2,3)(1)(2)(3)(4,5,6)(7,8)());
+
+    function add() {
+        /* curry化实现（例- add(1,2,3)(1)(2)(3)(4,5,6)(7,8)() === 42） */
+        let test = [];
+        test = [].slice.call(arguments);
+        /* 从下方开始有点类似于递归，把每个要加入的 参数式子 都当做一个整体进行处理 */
+        return function () {
+            let args = [].slice.call(arguments), len = args.length;
+            if (len !== 0) { // 若后续还有参数，则继续加入数组中
+                test = test.concat(args);
+                return arguments.callee;
+            } else {
+               return test.reduce((a,b) => {return a + b;});
+            }
+        }
+    }
+</script>
+</html>
+```
+
+### 实现一个bind函数
+```
+
+```
+### 前端使用异步的场景
+### 实现一个自己的ajax
+### 获取 YYYY-MM-DD 格式的日期
+### 获取一个长度一致的随机字符串
+### 一个能遍历对象和数组通用的forEach函数
+### 手动编写一个ajax，不依赖第三方库
+### 跨域的几种实现方式以及底层的实现原理
 
 ***
+## 运行环境
+### 浏览器渲染页面的过程
+1. 根据HTML结构生成DOM Tree（单个节点，没样式）
+2. 根据CSS生成CSSOM（CSS对象模型）
+3. 将DOM和CSSOM整合生成一个RenderTree（每个节点都有自己的样式）
+4. 根据RenderTree开始渲染和显示
+5. 遇到script标签的时候，会执行并阻塞渲染（渲染权交给了js）----JS加载完毕之后然后执行代码
+### 懒加载和预加载的区别和实现原理
+### 前端性能优化的方法有哪些
+### 重绘和回流的区别
+* 重绘：当render tree中的一些元素需要更新属性（只影响元素外观、风格，不影响布局）
+* 回流：当render tree中的一部分因为元素的尺寸、布局、隐藏等盖面需要重新构建（页面布局和集合属性改变）
+### XSS攻击
+利用用户的cookie进行恶意欺骗（cookie发送到外部服务器）(标签转义、白名单、黑名单过滤)
+### CSRF攻击
+论坛发送了一个删帖的API链接（图片），结果删除了自己的帖子。[恶意发帖、删帖]（验证码、token）
+#### 二者区别
+XSS是获取信息，不需要提前知道其他用户页面的代码和数据包。
+CSRF是代替用户完成指定的动作，需要知道其他用户页面的代码和数据包
+### ES6中常用的功能
+1. let/const
+2. 多行字符串/模板变量
+3. 解构赋值
+4. 块级作用域？【重点理解】
+5. 函数默认参数
+6. 箭头函数（this指向问题）
+#### var、let 及 const 区别
+* var声明的变量会挂载在window上，而let和const不会
+* var声明变量存在变量提升，let和const不会
+* let、const 的作用范围是块级作用域，而var的作用范围是函数作用域
+* 同一作用域下let和const不能声明同名变量，而var可以
+* 同一作用域下在let和const声明前使用会存在暂时性死区
+* const
+  * 一旦声明必须赋值,不能使用null占位
+  * 声明后不能再修改
+  * 如果声明的是复合类型数据，可以修改其属性
+#### Proxy
+#### 数组方法
+#### Es6中箭头函数与普通函数的区别
+* 普通function的声明在变量提升中是最高的，箭头函数没有函数提升（箭头函数没有原型属性）
+* 箭头函数没有属于自己的this、arguments
+* 箭头函数不能作为构造函数，不能被new，没有property
+* call和apply方法只有参数，没有作用域
+* 箭头函数的this永远指向其上下文的 this，任何方法都改变不了其指向，如call(), bind(), apply(),普通函数的this指向调用它的那个对象
+#### Promise
+Promise 翻译过来就是承诺的意思，这个承诺会在未来有一个确切的答复，并且该承诺有三种状态，这个承诺一旦从等待状态变成为其他状态就永远不能更改状态了。
+* 等待中（pending）
+* 完成了（resolved）
+* 拒绝了（rejected）
+当我们在构造 Promise 的时候，构造函数内部的代码是立即执行的.
+Promise 实现了链式调用，也就是说每次调用 then 之后返回的都是一个 Promise，并且是一个全新的 Promise，原因也是因为状态不可变。如果你在 then 中 使用了 return，那么 return 的值会被 Promise.resolve() 包装。
+Promise 也很好地解决了回调地狱的问题
+它也是存在一些缺点的，比如无法取消 Promise，错误需要通过回调函数捕获
+#### async 和 await
+一个函数如果加上 async ，那么该函数就会返回一个 Promise
+async 就是将函数返回值使用 Promise.resolve() 包裹了下，和 then 中处理返回值一样，并且 await 只能配套 async 使用
+async 和 await 可以说是异步终极解决方案了，相比直接使用 Promise 来说，优势在于处理 then 的调用链，能够更清晰准确的写出代码，毕竟写一大堆 then 也很恶心，并且也能优雅地解决回调地狱问题
+也存在一些缺点，因为 await 将异步代码改造成了同步代码，如果多个异步代码没有依赖性却使用了 await 会导致性能上的降低
+#### Generator 生成器
+```
+function *foo(x) {
+  let y = 2 * (yield (x + 1))
+  let z = yield (y / 3)
+  return (x + y + z)
+}
+let it = foo(5)
+console.log(it.next())   // => {value: 6, done: false}
+console.log(it.next(12)) // => {value: 8, done: false}
+console.log(it.next(13)) // => {value: 42, done: true}
+```
+* Generator 函数调用和普通函数不同，它会返回一个迭代器
+* 当执行第一次 next 时，传参会被忽略，并且函数暂停在 yield (x + 1) 处，所以返回 5 + 1 = 6
+* 当执行第二次 next 时，传入的参数等于上一个 yield 的返回值，如果你不传参，yield 永远返回 undefined。此时 let y = 2 12，所以第二个 yield 等于 2 12 / 3 = 8
+* 当执行第三次 next 时，传入的参数会传递给 z，所以 z = 13, x = 5, y = 24，相加等于 42
+#### 生成器原理
+当yeild产生一个值后，生成器的执行上下文就会从栈中弹出。但由于迭代器一直保持着队执行上下文的引用，上下文不会丢失，不会像普通函数一样执行完后上下文就被销毁
+
+***
+## MVVM和VUE
+### v-bind和v-model的区别
+1. v-bind用来绑定数据和属性以及表达式，缩写为'：'
+2. v-model使用在表单中，实现双向数据绑定的，在表单元素外使用不起作用
+### Vue 中三要素
+#### 响应式
+* 修改 data 属性之后， vue 立刻监听
+* data 属性被代理到 vm 上
+#### 模板引擎
+```
+    <div id="app">
+        <div>
+            <input v-model="title">
+            <button v-on:click="add">submit</button>
+        </div>
+        <ul>
+            <li v-for="item in list"></li>
+        </ul>
+    </div>
+```
+* 本质：字符串
+* 有逻辑（v-if\v-for）
+* 最终还是要转换成html显示
+* 最终必须要转换成js代码，因为：
+  1. 逻辑性必须由js实现（图灵完备）
+  2. html的页面渲染是静态的，必须通过js注入灵魂
+#### 渲染
+```
+var obj = {
+    name: 'zhangsan',
+    age: 20,
+    getAddress(){
+        alert('shanghai');
+    }
+}
+
+// 不使用with
+function fn() {
+  alert(obj.name);
+  alert(obj.age);
+  obj.getAddress();
+}
+
+// 使用with(代码不易维护！！！)
+function fn1() {
+  with(obj){
+      alert(name);
+      alert(age);
+      getAddress();
+  }
+}
+
+fn();
+fn1();
+```
+### vue 的整个实现流程
+* 第一步: 解析模板成 render　函数
+* 第二步: 响应式开始监听
+* 第三步: 首次渲染，显示页面，且绑定依赖
+* 第四步: data 属性变化，触发 render
+
+### vm的实质
+vm负责让数据变了，视图能自动发生变化。背后的原理是Object.defineProperty。
+其实就是属性的读取和设置操作都进行了监听，当有这样的操作的时候，进行某种动作。
+
+### vue 的双向绑定的原理
+* vue.js 是采用数据劫持结合发布者-订阅者模式的方式，通过 Object.defineProperty()来劫持各个属性的 setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。
+1. 需要 observe 的数据对象进行递归遍历，包括子属性对象的属性，都加上 setter 和 getter 这样的话，给这个对象的某个值赋值，就会触发 setter，那么就能监听到了数据变化
+2. compile 解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图
+3. Watcher 订阅者是 Observer 和 Compile 之间通信的桥梁，主要做的事情是:
+  * 在自身实例化时往属性订阅器(dep)里面添加自己
+  * 自身必须有一个 update()方法
+  * 待属性变动 dep.notice()通知时，能调用自身的 update() 方法，并触发 Compile 中绑定的回调，则功成身退。
+4. MVVM 作为数据绑定的入口，整合 Observer、Compile 和 Watcher 三者，通过 Observer 来监听自己的 model 数据变化，通过 Compile 来解析编译模板指令，最终利用 Watcher 搭起 Observer 和 Compile 之间的通信桥梁，达到数据变化 -> 视图更新；视图交互变化(input) -> 数据 model 变更的双向绑定效果
+* (绑定所有属性避免后期加新属性。如果是数组，只能通过数组方法修改数组。如下例子，控制台vm.arr--发现视图并不会变化，vm.arr.push(4)就能变化)
+```
+        <script src="node_modules/vue/dist/vue.js"></script>
+        <script>
+        let vm = new Vue({
+            el:'#app',
+            // template加上之后会替换掉#app这个标签
+            // template:'<h1>en</h1>',
+            data:{msg:'msg',arr:[1,2,3]}
+        })
+        vm.msg = 'msg'
+        </script>
+```
+### vue 的优点和缺点是什么
+#### 优点
+1. 低耦合。视图（View）可以独立于 Model 变化和修改，一个 ViewModel 可以绑定到不同的"View"上，当 View 变化的时候 Model 可以不变，当 Model 变化的时候 View 也可以不变。
+2. 可重用性。你可以把一些视图逻辑放在一个 ViewModel 里面，让很多 view 重用这段视图逻辑。
+3. 独立开发。开发人员可以专注于业务逻辑和数据的开发（ViewModel），设计人员可以专注于页面设计，使用 Expression Blend 可以很容易设计界面并生成 xml 代码。
+4. 可测试。界面素来是比较难于测试的，而现在测试可以针对 ViewModel 来写
+#### 缺点
+1. 网站SEO问题
+2. 浏览器兼容性问题
+3. 海量数据节点的渲染问题
+
+### vue 生命周期
+* 8个阶段：创建前/后，载入前/后，更新前/后，销毁前/后
+1. 创建前/后： 在 beforeCreate 阶段，vue 实例的挂载元素 el 还没有, created阶段。
+2. 载入前/后：在 beforeMount 阶段，vue 实例的$el 和 data 都初始化了，但还是挂载之前为虚拟的 dom 节点，data.message 还未替换。在 mounted 阶段，vue 实例挂载完成，data.message 成功渲染。
+3. 更新前/后：当 data 变化时，会触发beforeUpdate 和 updated方法。
+4. 销毁前/后：在执行 destroy 方法后，对 data 的改变不会再触发周期函数，说明此时 vue 实例已经解除了事件监听以及和 dom 的绑定，但是 dom 结构依然存在
+### Vue组件之间的传值
+### Vue路由
+### Vue指令
+### Vux
+### axios
+***
+# JS原型
+***
+# JS异步
+***
+# JS正则
+***
+# JS函数
+***
+# NodeJS
+***
+# 性能优化
+***
+# Webpack
+***
+# Web安全
+***
+# 计算机网络
+***
+# 操作系统
+***
+# 数据结构
+***
+# 开发环境
+***
+# 编程题
+
+
+
+
+
+
 
 # 个人主页
 ## HTML
