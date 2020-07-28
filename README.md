@@ -3,6 +3,131 @@
   [My CSDN](http://blog.csdn.net/archiewade "点击跳转")<br>
   [My Blog](https://archieself.online)<br>
   [掘金]()<br>
+***
+
+## 十进制转换为任意N进制
+```javascript
+/* 通过数组实现 数据结构——栈 */
+function Stack() {
+    let items = [];
+
+    /* 压栈 */
+    this.push = function (element) {
+        return items.push(element);
+    };
+
+    /* 弹出栈 */
+    this.pop = function () {
+        return items.pop();
+    };
+
+    /* 判定栈空 */
+    this.idEmpty = function () {
+        return items.length == 0;
+    }
+}
+
+function Decimal2Binary(number) {
+    let myStack = new Stack(), // 存放筛选值的栈
+        reminder,  // 每次求余后的余数
+        binaryString = '';  // 二进制字符串
+
+    while (number > 0) {
+        reminder = Math.floor(number % 2); // 十进制数对2除余
+        myStack.push(reminder);
+        number = Math.floor(number/2); // 获得除余后的 商
+    }
+
+    while (! myStack.idEmpty()) {
+        binaryString += myStack.pop().toString();
+    }
+
+    console.log(binaryString);
+}
+
+Decimal2Binary(155); //10011011
+```
+
+## 数组去重
+ES6 新增了 Set 这一数据结构，类似于数组，但 Set 的成员具有唯一性
+基于这一特性，就非常适合用来做数组去重
+```javascript
+var arr1 = Array.from(new Array(10), (x, index) => {return index * 2});
+var arr2 = Array.from(new Array(20), (x, index) => {return index});
+
+console.log(arr1); // [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+console.log(arr2); // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+function distinct(a, b) {
+    let c = a.concat(b); // 整合两个数组（简单拼接）
+    return [...new Set(c)]; // 简单明了
+}
+
+var result = distinct(arr1, arr2);
+console.log(result);  // [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+```
+
+## 快速生成0~100数组
+```javascript
+Array.from({length:30},(x, index) => {return index + 1});
+```
+
+## 随机生成任意区间数的公式
+```javascipt
+//如果你希望生成任意值到任意值的随机数，公式就是这样的：
+// max - 期望的最大值
+// min - 期望的最小值 
+parseInt(Math.random()*(max-min+1)+min,10);
+Math.floor(Math.random()*(max-min+1)+min);
+
+var max =10;
+var min = 1;
+var arrays = Array.from({length:20},
+    ()=>Math.floor(Math.random()*(max-min+1)+min)); // 生成长度20，每个元素1~10的随机数组
+```
+
+## 快速进制转换
+```javascript
+//十进制转其他进制
+var x=110;
+console.log(x);
+console.log(x.toString(8));
+console.log(x.toString(32));
+console.log(x.toString(16));
+
+//字符串解析为指定进制后 转十进制
+var x='110';
+console.log(parseInt(x,2));
+console.log(parseInt(x,8));
+console.log(parseInt(x,16));
+```
+
+## 使用Set完成 交并补
+```javascript
+const arr1 = [1,2,4,5,9];
+const arr2 = [3,7,5,9];
+const unionSet = new Set([...arr1, ...arr2]);
+const filterSet = new Set([9]);
+const interSet = new Set(
+    [...unionSet].filter(item => filterSet.has(item))
+);
+const pureSet = new Set(
+    [...unionSet].filter(item => !filterSet.has(item))
+);
+
+console.log(unionSet); // Set并集
+console.log(interSet); // Set交集
+console.log(pureSet); // Set差集
+```
+
+
+
+
+
+
+
+
+
 
 ***
 ## MVVM和VUE
