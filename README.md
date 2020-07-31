@@ -5,6 +5,55 @@
   [掘金]()<br>
 ***
 
+```javascript
+var myCanvas = document.getElementById('myCanvas');
+var ctx = myCanvas.getContext('2d');
+
+ctx.beginPath();
+ctx.moveTo(50,100);
+ctx.lineTo(100, 50);
+ctx.lineTo(150, 100);
+ctx.fill();
+
+ctx.moveTo(250, 100);
+ctx.arc(200, 100, 50, 0, 2*Math.PI);
+ctx.stroke();
+
+ctx.font = "20px Arial";
+ctx.fillText("圆", 190, 110);
+
+ctx.quadraticCurveTo(500, 100, 300, 200);
+ctx.stroke();
+
+// 监听鼠标点击事件
+myCanvas.addEventListener('click',function (event) {
+    getMousePos(myCanvas, event)
+});
+
+// 获取点击位置的坐标
+function getMousePos(canvas, event) {
+    var rect = canvas.getBoundingClientRect();
+    console.log('鼠标对于页面坐标：','(x=',event.clientX,',y=',event.clientY,')');
+    /* 之所以要乘一个(canvas.width / rect.width)，
+    是为了保证画布的像素值和显示在页面上的尺寸不一致的情况下，
+    也能够正确获取到鼠标相对于canvas中的坐标。 */
+    var x = event.clientX - rect.left*(canvas.width / rect.width);
+    var y = event.clientY - rect.top*(canvas.height / rect.height);
+    console.log('鼠标对于画布坐标', '(x=',x.toFixed(2),',y=',y.toFixed(2),')');
+}
+
+
+
+
+
+
+
+
+
+```
+
+***
+
 ## 十进制转换为任意N进制
 ```javascript
 /* 通过数组实现 数据结构——栈 */
