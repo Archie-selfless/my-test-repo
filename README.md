@@ -41,8 +41,49 @@ function getMousePos(canvas, event) {
     var y = event.clientY - rect.top*(canvas.height / rect.height);
     console.log('鼠标对于画布坐标', '(x=',x.toFixed(2),',y=',y.toFixed(2),')');
 }
+```
+## for...of为什么不能遍历Object对象
+(详解)[https://blog.csdn.net/WDCCSDN/article/details/81076397]
+因为能够被for...of正常遍历的，都需要实现一个遍历器Iterator。而数组、字符串、Set、Map结构，早就内置好了Iterator（迭代器），它们的原型中都有一个Symbol.iterator方法，而Object对象并没有实现这个接口，使得它无法被for...of遍历
 
+## 对象遍历大法
+```javascript
+let obj = {
+    propA: 1,
+    propB: 2,
+    propC: 3
+};
 
+let map = new Map();
+map.set('propA', 1);
+map.set('propB', 2);
+map.set('propC', 3);
+
+/* 遍历方式1——Object.keys(obj)
+返回一个数组,包括对象自身的(不含继承的)所有可枚举属性(不含Symbol属性) */
+//遍历对象
+Object.keys(obj).forEach((key) => {
+    console.log(key, obj[key]);
+});
+// 特别指出：和遍历Map是不同的
+map.forEach((value, key) => {
+    console.log(key, value);
+});
+
+console.log('~~~~~~~~~~~');
+
+/* 遍历方式2——for...in */
+for (var key in obj) {
+    console.log(key, ':', obj[key]);
+}
+
+console.log('~~~~~~~~~~~');
+
+/* 遍历方式3——Reflect.ownKeys(obj)
+返回一个数组,包括对象自身的(不含继承的)所有可枚举属性(不含Symbol属性) */
+Reflect.ownKeys(obj).forEach((key) => {
+    console.log(key, ':', obj[key]);
+});
 
 
 
